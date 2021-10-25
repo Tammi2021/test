@@ -1,10 +1,19 @@
 
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-body {
-
-  margin: 0;
-  font-family: sans-serif;
+form  {
+  display: flex;
+  flex-direction: column;
+  width: 100vh;
+  height: 100vh;
+  margin: 10px auto;
+  justify-content: center;
+  align-items: center;
 }
-h1 {
-  text-align: center;
+
+mat-form-field {
+  width: 100%;
+  max-width: 250px;
+
+  min-height: 45px;
+  font-size: 24px;
+  margin: 10px 0;
 }
