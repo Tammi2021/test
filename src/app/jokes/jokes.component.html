@@ -1,0 +1,48 @@
+<mat-card>
+    <mat-card-content>
+        <table mat-table [dataSource]="jokes">
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> Id </th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef> Category </th>
+                <td mat-cell *matCellDef="let row"> {{row.category}} </td>
+            </ng-container>
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef> Type </th>
+                <td mat-cell *matCellDef="let row"> {{row.type}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row (click)="open(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>
+<ng-template #dialog>
+    <h1 mat-dialog-title>{{selectedJoke.id}}</h1>
+    <div mat-dialog-content>
+        <ul>
+            <li>
+                Category:
+                {{selectedJoke.category}}
+            </li>
+            <li>
+                Type:
+                {{selectedJoke.type}}
+            </li>
+            <li *ngIf="selectedJoke.joke">
+                Joke:
+                {{selectedJoke?.joke}}
+            </li>
+            <li *ngIf="selectedJoke.setup">
+                Joke:
+                {{selectedJoke?.setup}}
+            </li>
+        </ul>
+        <a *ngFor="let joke of relatedJoke" (click)="selectedJoke=joke">
+            {{joke['id']}}
+        </a>
+    </div>
+</ng-template>
